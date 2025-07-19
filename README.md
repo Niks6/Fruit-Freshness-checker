@@ -4,7 +4,7 @@
 This project deploys a deep learning model that predicts the age (ripeness level) of bananas after being plucked from the tree. The model uses a custom dataset and InceptionV3 architecture, deployed as a web service on Render.
 
 ## Live Demo
-The model is deployed at: [https://your-render-service.onrender.com](https://your-render-service.onrender.com)
+The model is deployed at: [(https://fruit-freshness-checker.onrender.com)](https://fruit-freshness-checker.onrender.com)
 
 ## Features
 - REST API endpoint for predictions
@@ -15,16 +15,16 @@ The model is deployed at: [https://your-render-service.onrender.com](https://you
 ## Project Structure
 ```
 .
-├── app/                  # Flask/FastAPI application
-│   ├── main.py           # Web server entry point
-│   ├── model.py          # Model loading and prediction logic
-│   └── templates/        # HTML templates (if web interface exists)
-├── model/                # Trained model files
-│   └── inceptionv3_banana.h5
-├── requirements.txt      # Python dependencies
-├── render.yaml           # Render deployment configuration
-├── Dockerfile            # Container configuration (if using Docker)
-└── README.md
+├── data/                  
+│   ├── banana_dataset                      # Raw dataset
+│   ├── fine_output_banana_dataset          # fine tuned dataset
+│   └── templates/        
+├── templates/              
+│   └── index.html         # webpage
+├── requirements.txt       # Python dependencies
+├── model.h5               # InceptionV3 model
+├── freshness_checker      # jupyter notebook
+└── app.py                 # Flask App
 ```
 
 ## Local Development
@@ -47,10 +47,10 @@ pip install -r requirements.txt
 
 4. Run the development server:
 ```bash
-python app/main.py
+python app.py
 ```
 
-The API will be available at `http://localhost:5000`
+The API will be available at `http://[http://127.0.0.1:5000/](http://127.0.0.1:5000/)`
 
 ## API Endpoints
 ### Prediction Endpoint
@@ -67,8 +67,8 @@ Example response:
 ```json
 {
   "prediction": 2.5,
-  "confidence": 0.92,
-  "message": "Banana is approximately 2.5 days old"
+  "confidence": 92.,
+  "message": "3_days_old"
 }
 ```
 
@@ -81,23 +81,13 @@ This project is configured for automatic deployment on Render:
    - Health checks enabled
 
 2. **Environment Variables**:
-   - `PYTHON_VERSION`: 3.9
-   - `MODEL_PATH`: ./model/inceptionv3_banana.h5
+   - `PYTHON_VERSION`: 3.10.13
+   - `MODEL_PATH`: ./model.h5
 
 3. **Scaling**:
    - Standard instance type
    - Auto-scaling configured (if needed)
 
-## Monitoring
-The deployed service includes:
-- Uptime monitoring
-- Performance metrics
-- Log streaming
-
-## CI/CD Pipeline
-- Push to main branch triggers rebuild
-- Automated tests run before deployment
-- Health checks verify successful deployment
 
 ## Troubleshooting
 Common issues:
@@ -110,5 +100,4 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ## Contact
 For support or questions:
-- Email: your.email@example.com
-- GitHub Issues: [https://github.com/yourusername/banana-ripeness-prediction/issues](https://github.com/yourusername/banana-ripeness-prediction/issues)
+- Email: codeisforcoders@gmail.com
